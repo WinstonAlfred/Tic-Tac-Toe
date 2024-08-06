@@ -79,4 +79,8 @@ This game is deployed on Vercel. Any pushes to the main branch will automaticall
 - Add sound effects
 - Create a dark mode option
 
+## Play the Game
+https://tic-tac-toe-beta-liard.vercel.app/
+
+
 Feel free to contribute to this project by submitting pull requests or opening issues for any bugs or feature requests!
