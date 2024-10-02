@@ -74,7 +74,6 @@ This game is deployed on Vercel. Any pushes to the main branch will automaticall
 
 ## Future Improvements
 
-- Add an AI opponent
 - Implement a difficulty setting
 - Add sound effects
 - Create a dark mode option
