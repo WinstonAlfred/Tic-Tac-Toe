@@ -3,27 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe</title>
+    <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="game-container">
-        <h1>Tic-Tac-Toe</h1>
-        <div class="scoreboard">
-            <div class="score">
-                <span>X Wins:</span>
-                <span id="x-score">0</span>
-            </div>
-            <div class="score">
-                <span>O Wins:</span>
-                <span id="o-score">0</span>
-            </div>
-            <div class="score">
-                <span>Draws:</span>
-                <span id="draws">0</span>
-            </div>
+        <h1>Tic Tac Toe</h1>
+        <div id="mode-selection">
+            <button id="local-multiplayer">Local Multiplayer</button>
+            <button id="vs-bot">VS Bot</button>
         </div>
-        <div class="board" id="board">
+        <div id="game-board" class="hidden">
             <div class="cell" data-cell-index="0"></div>
             <div class="cell" data-cell-index="1"></div>
             <div class="cell" data-cell-index="2"></div>
@@ -34,10 +24,14 @@
             <div class="cell" data-cell-index="7"></div>
             <div class="cell" data-cell-index="8"></div>
         </div>
-        <div id="status"></div>
-        <button id="reset">Reset Game</button>
+        <h2 id="status"></h2>
+        <button id="reset" class="hidden">Reset Game</button>
+        <div id="score-board">
+            <p>X Score: <span id="x-score">0</span></p>
+            <p>O Score: <span id="o-score">0</span></p>
+            <p>Draws: <span id="draws">0</span></p>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

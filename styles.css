@@ -12,51 +12,36 @@ body {
     text-align: center;
 }
 
-.scoreboard {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-}
-
-.score {
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.board {
+#game-board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
-    grid-gap: 5px;
-    margin-top: 20px;
+    gap: 5px;
+    margin: 20px auto;
 }
 
 .cell {
     width: 100px;
     height: 100px;
     background-color: #fff;
-    border: 2px solid #333;
-    font-size: 2em;
+    border: 1px solid #000;
+    font-size: 3em;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 
-.cell:hover {
-    background-color: #eee;
-}
-
-#status {
-    margin-top: 20px;
-    font-size: 1.2em;
-}
-
-#reset {
-    margin-top: 20px;
-    font-size: 1em;
+button {
+    margin: 10px;
     padding: 10px 20px;
+    font-size: 1em;
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+#score-board {
+    margin-top: 20px;
 }

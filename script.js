@@ -4,8 +4,12 @@ const resetButton = document.getElementById('reset');
 const xScoreDisplay = document.getElementById('x-score');
 const oScoreDisplay = document.getElementById('o-score');
 const drawsDisplay = document.getElementById('draws');
+const gameBoardElement = document.getElementById('game-board');
+const modeSelectionElement = document.getElementById('mode-selection');
+const localMultiplayerButton = document.getElementById('local-multiplayer');
+const vsBotButton = document.getElementById('vs-bot');
 
-let gameActive = true;
+let gameActive = false;
 let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let scores = {
@@ -13,6 +17,7 @@ let scores = {
     O: 0,
     draws: 0
 };
+let gameMode = null;
 
 const winningConditions = [
     [0, 1, 2],
@@ -25,6 +30,18 @@ const winningConditions = [
     [2, 4, 6]
 ];
 
+function startGame(mode) {
+    gameMode = mode;
+    gameActive = true;
+    currentPlayer = "X";
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
+    cells.forEach(cell => cell.textContent = "");
+    modeSelectionElement.classList.add('hidden');
+    gameBoardElement.classList.remove('hidden');
+    resetButton.classList.remove('hidden');
+}
+
 function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
@@ -35,6 +52,10 @@ function handleCellClick(clickedCellEvent) {
 
     handleCellPlayed(clickedCell, clickedCellIndex);
     handleResultValidation();
+
+    if (gameActive && gameMode === 'vs-bot' && currentPlayer === 'O') {
+        setTimeout(makeBotMove, 500);
+    }
 }
 
 function handleCellPlayed(clickedCell, clickedCellIndex) {
@@ -83,14 +104,32 @@ function updateScore(winner) {
 }
 
 function handleReset() {
-    gameActive = true;
-    currentPlayer = "X";
-    gameState = ["", "", "", "", "", "", "", "", ""];
-    statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
-    cells.forEach(cell => cell.textContent = "");
+    gameActive = false;
+    modeSelectionElement.classList.remove('hidden');
+    gameBoardElement.classList.add('hidden');
+    resetButton.classList.add('hidden');
+    statusDisplay.textContent = 'Choose a game mode';
+}
+
+function makeBotMove() {
+    if (!gameActive) return;
+
+    let availableMoves = gameState.reduce((acc, cell, index) => {
+        if (cell === "") acc.push(index);
+        return acc;
+    }, []);
+
+    if (availableMoves.length > 0) {
+        let randomMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+        let botCell = document.querySelector(`[data-cell-index="${randomMove}"]`);
+        handleCellPlayed(botCell, randomMove);
+        handleResultValidation();
+    }
 }
 
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 resetButton.addEventListener('click', handleReset);
+localMultiplayerButton.addEventListener('click', () => startGame('local-multiplayer'));
+vsBotButton.addEventListener('click', () => startGame('vs-bot'));
 
-statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
+statusDisplay.textContent = 'Choose a game mode';
