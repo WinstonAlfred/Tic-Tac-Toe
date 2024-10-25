@@ -32,7 +32,6 @@ A feature-rich, responsive Tic Tac Toe game built with React and TypeScript, fea
 ### Core Technologies
 - React with TypeScript
 - Tailwind CSS for styling
-- Shadcn UI components
 - Lucide React icons
 
 ### AI Implementation
