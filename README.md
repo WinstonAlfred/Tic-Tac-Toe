@@ -147,3 +147,6 @@ type Board = Player[];
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Play The Game
+https://tic-tac-toe-alpha-five-43.vercel.app/
